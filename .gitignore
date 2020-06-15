@@ -1,0 +1,9 @@
+C1-P1_Train/
+C1-P1_Test/
+C1-P1_Dev/
+model
+DFL_VGG16
+DFL_VGG16_1
+*.csv
+__pycache__/
+.ipynb_checkpoints/
