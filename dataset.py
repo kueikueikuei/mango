@@ -18,8 +18,6 @@ class MangoDataset(Dataset):
              transforms.RandomHorizontalFlip(p=0.5),
              transforms.RandomVerticalFlip(p=0.5),
              transforms.RandomRotation(15, resample=False, expand=False, center=None),
-#              transforms.RandomRotation(30, resample=False, expand=False, center=None),
-#              transforms.RandomRotation(30, resample=False, expand=False, center=None),
              transforms.CenterCrop(224),
              transforms.ToTensor(),
              transforms.Normalize(mean=[0.485, 0.456, 0.406],
@@ -45,8 +43,6 @@ class MangoDataset(Dataset):
         label = np.where(label=="B", 1, label)
         numerical_lbls = np.where(label=="C", 2, label)
         self.lbls = numerical_lbls
-        self.ps = np.zeros(len(self.imgs))
-        self.conf = np.zeros(len(self.imgs))
         assert len(self.imgs) == len(self.lbls), 'mismatched length!'
 
     def __getitem__(self, index):
@@ -68,7 +64,7 @@ class MangoDataset(Dataset):
             img = self.transform_test(img)
             return img
         lbl = int(self.lbls[index])
-        return img, lbl,self.conf[index],index,self.ps[index]
+        return img, lbl
 
 
     def __len__(self):

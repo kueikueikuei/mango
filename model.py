@@ -197,3 +197,10 @@ class MangoNet(torch.nn.Module):
     def forward(self, x):
         x = self.backbone(x)
         return x
+class MangoRegressionNet(torch.nn.Module):
+    def __init__(self):
+        super(MangoRegressionNet, self).__init__()
+        self.backbone = EfficientNet.from_pretrained('efficientnet-b7', num_classes=1)
+    def forward(self, x):
+        x = self.backbone(x)
+        return x
